@@ -166,6 +166,7 @@ body {
 
 			ul.jobSites {
 				margin: 0;
+
 				a {
 					color: rgb(149, 223, 149);
 				}
@@ -194,11 +195,17 @@ body {
 					}
 
 					.field_url {
-						width: 700px;
+						width: 800px;
 					}
 
 					.field_skills {
-						width: 700px;
+						width: 800px;
+					}
+
+					.field_bulkText {
+						width: 800px;
+						height: 100px;
+						font-size: 1.2rem;
 					}
 				}
 
@@ -214,8 +221,15 @@ body {
 				margin: 20px 0 0 0;
 				font-size: 0.9rem;
 				color: rgb(185, 157, 86);
-			}
 
+				pre {
+					white-space: pre-wrap;
+					white-space: -moz-pre-wrap;
+					white-space: -pre-wrap;
+					white-space: -o-pre-wrap;
+					word-wrap: break-word;
+				}
+			}
 		}
 	}
 }

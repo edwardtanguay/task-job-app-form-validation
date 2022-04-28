@@ -12,17 +12,17 @@ export const AddJob = () => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			// department: 'Sales',
+			skills: 'HTML, CSS, JavaScript, React',
 		},
 	});
 
-	// useEffect(() => {
-	// 	const firstName = watch('firstName');
-	// 	if (firstName === '/nk') {
-	// 		setValue('firstName', 'Nick');
-	// 		setValue('lastName', 'Kronkatch');
-	// 	}
-	// }, [watch('firstName')]);
+	useEffect(() => {
+		const position = watch('position');
+		if (position === '/r') {
+			setValue('position', 'Frontend React Developer');
+			setValue('skills', 'React, JavaScript, HTML, CSS');
+		}
+	}, [watch('position')]);
 
 	return (
 		<div className="page_addJob">
@@ -89,10 +89,22 @@ export const AddJob = () => {
 						/>
 						<div className="info">{errors.skills?.message}</div>
 					</div>
+					<div className="row">
+						<textArea
+							className="field_bulkText"
+							{...register('bulkText', {
+								required:
+									'Please copy the text from the job site and paste it in here.',
+							})}
+							placeholder="Copy and paste text from job site here."
+						/>
+						<div className="info">{errors.bulkText?.message}</div>
+					</div>
 					<button disabled={Object.keys(errors).length}>Add the Job</button>
 
 					{Object.keys(formData).length > 0 && (
 						<div className="formData">
+							<div className="info">This will be sent to the backend:</div>
 							<pre>{JSON.stringify(formData, null, 2)}</pre>
 						</div>
 					)}
