@@ -160,6 +160,10 @@ body {
 		}
 
 		.page_addJob {
+			h3 {
+				margin: 20px 0 10px 0;
+			}
+
 			form {
 				.row {
 					margin: 0 0 0.5rem 0;
@@ -177,10 +181,18 @@ body {
 						font-size: 0.9rem;
 						color: yellow;
 					}
+
+					.field_url {
+						width: 700px;
+					}
+
+					.field_skills {
+						width: 700px;
+					}
 				}
 
 				button {
-					font-size: 1.4rem;
+					font-size: 1.2rem;
 					margin: 10px 0 0 0;
 				}
 			}
