@@ -159,5 +159,40 @@ body {
 			}
 		}
 
+		.page_addJob {
+			form {
+				.row {
+					margin: 0 0 0.5rem 0;
+
+					input {
+						display: block;
+						font-size: 1.4rem;
+					}
+
+					::placeholder {
+						color: #aaa;
+					}
+
+					div.info {
+						font-size: 0.9rem;
+						color: yellow;
+					}
+				}
+
+				button {
+					font-size: 1.4rem;
+					margin: 10px 0 0 0;
+				}
+			}
+
+			.formData {
+				background: #444;
+				padding: 1px 10px;
+				margin: 20px 0 0 0;
+				font-size: 0.9rem;
+				color: rgb(185, 157, 86);
+			}
+
+		}
 	}
 }
