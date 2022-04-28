@@ -4,6 +4,7 @@ import _jobs from './data/jobs.json';
 import { JobsFull } from './components/JobsFull';
 import { JobsList } from './components/JobsList';
 import md5 from 'md5';
+import { AddJob } from './components/AddJob';
 
 _jobs.forEach((job) => {
 	job.status = 'accepted';
@@ -12,16 +13,17 @@ _jobs.forEach((job) => {
 const techItemsUrl = 'https://edwardtanguay.netlify.app/share/techItems.json';
 
 const statuses = ['send', 'wait', 'interview', 'declined', 'accepted'];
+const displayKinds = ['list', 'full', 'addJob'];
 
 function App() {
 	const [displayKind, setDisplayKind] = useState('');
 	const [jobs, setJobs] = useState([]);
 	const [techItems, setTechItems] = useState([]);
-	const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+	const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
 	const [fieldLogin, setFieldLogin] = useState('');
 	const [fieldPassword, setFieldPassword] = useState('');
 	const [formMessage, setFormMessage] = useState('');
-	const [userGroup, setUserGroup] = useState('');
+	const [userGroup, setUserGroup] = useState('fullAccessMembers');
 
 	const saveToLocalStorage = () => {
 		if (displayKind !== '') {
@@ -62,8 +64,12 @@ function App() {
 	}, [displayKind, jobs]);
 
 	const handleToggleView = () => {
-		const _displayKind = displayKind === 'full' ? 'list' : 'full';
-		setDisplayKind(_displayKind);
+		let displayKindIndex = displayKinds.indexOf(displayKind);
+		displayKindIndex++;
+		if (displayKindIndex > displayKinds.length - 1) {
+			displayKindIndex = 0;
+		}
+		setDisplayKind(displayKinds[displayKindIndex]);
 	};
 
 	const handleStatusChange = (job) => {
@@ -133,15 +139,15 @@ function App() {
 						)}
 						<button onClick={handleLogoutButton}>Logout</button>
 					</div>
-					{displayKind === 'full' ? (
+					{displayKind === 'full' && (
 						<JobsFull
 							jobs={jobs}
 							handleStatusChange={handleStatusChange}
 							techItems={techItems}
 						/>
-					) : (
-						<JobsList jobs={jobs} />
 					)}
+					{displayKind === 'list' && <JobsList jobs={jobs} />}
+					{displayKind === 'addJob' && <AddJob />}
 				</>
 			) : (
 				<form>
@@ -176,7 +182,15 @@ function App() {
 							)}
 						</div>
 						<div className="buttonRow">
-							<button disabled={fieldLogin.trim().length === 0 || fieldPassword.trim().length === 0} onClick={handleSubmitButton}>Enter</button>
+							<button
+								disabled={
+									fieldLogin.trim().length === 0 ||
+									fieldPassword.trim().length === 0
+								}
+								onClick={handleSubmitButton}
+							>
+								Enter
+							</button>
 						</div>
 					</fieldset>
 				</form>
