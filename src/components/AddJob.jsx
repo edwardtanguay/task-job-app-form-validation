@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import jobSites from '../data/jobSites.json';
 
 export const AddJob = () => {
 	const [formData, setFormData] = useState({});
@@ -25,7 +26,19 @@ export const AddJob = () => {
 
 	return (
 		<div className="page_addJob">
-			<h3>Add Job:</h3>
+			<h3>Find Jobs:</h3>
+			<ul className="jobSites">
+				{jobSites.map((jobSite, index) => {
+					return (
+						<li>
+							<a target="_blank" href={jobSite.url}>
+								{jobSite.name}
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+			<h3>Add a Job:</h3>
 			<div className="App">
 				<form
 					onSubmit={handleSubmit((data) => {
@@ -34,6 +47,7 @@ export const AddJob = () => {
 				>
 					<div className="row">
 						<input
+							className="field_position"
 							type="text"
 							{...register('position', {
 								required: 'Please enter a position.',
@@ -49,7 +63,7 @@ export const AddJob = () => {
 					</div>
 					<div className="row">
 						<input
-						className="field_url"
+							className="field_url"
 							type="text"
 							{...register('url', {
 								required: 'Please enter a URL.',
@@ -60,10 +74,11 @@ export const AddJob = () => {
 					</div>
 					<div className="row">
 						<input
-						className="field_skills"
+							className="field_skills"
 							type="text"
 							{...register('skills', {
-								required: 'Please enter skills in comma separated form.',
+								required:
+									'Please enter skills in comma separated form.',
 								minLength: {
 									value: 4,
 									message:
@@ -74,7 +89,7 @@ export const AddJob = () => {
 						/>
 						<div className="info">{errors.skills?.message}</div>
 					</div>
-					<button disabled={Object.keys(errors).length}>Send</button>
+					<button disabled={Object.keys(errors).length}>Add the Job</button>
 
 					{Object.keys(formData).length > 0 && (
 						<div className="formData">

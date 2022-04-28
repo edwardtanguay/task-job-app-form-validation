@@ -164,6 +164,13 @@ body {
 				margin: 20px 0 10px 0;
 			}
 
+			ul.jobSites {
+				margin: 0;
+				a {
+					color: rgb(149, 223, 149);
+				}
+			}
+
 			form {
 				.row {
 					margin: 0 0 0.5rem 0;
@@ -180,6 +187,10 @@ body {
 					div.info {
 						font-size: 0.9rem;
 						color: yellow;
+					}
+
+					.field_position {
+						width: 500px;
 					}
 
 					.field_url {
